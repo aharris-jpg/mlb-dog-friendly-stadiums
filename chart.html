@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Most Dog-Friendly Baseball Stadiums in America 2026 — Vegas Insider</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f5f4f0;padding:24px 16px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.wrap{max-width:980px;margin:0 auto;border:1px solid #E7E2D8;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 22px rgba(54,66,94,.10);}
+.head{padding:14px 20px;background:#24324A;border-radius:14px 14px 0 0;color:#fff;}
+.head h3{font-size:18px;font-weight:900;line-height:1.2;margin-bottom:4px;}
+.head p{font-size:12px;opacity:.92;line-height:1.45;}
+.head p.note{font-size:11px;opacity:.85;margin-top:5px;}
+.tabs{display:flex;gap:0;border-bottom:1px solid #E7E2D8;background:#FFFDF9;}
+.tab{padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:none;color:#6F7682;border-bottom:2px solid transparent;}
+.tab.active{color:#24324A;border-bottom:2px solid #B6842D;}
+.tab:hover:not(.active){color:#24324A;background:rgba(182,132,45,.06);}
+.body{padding:16px 20px;}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;}
+.leg-item{display:flex;align-items:center;gap:5px;color:#6F7682;font-weight:700;}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.chart-area{margin-bottom:8px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.bar-label{font-size:12px;font-weight:700;color:#24324A;min-width:230px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{flex:1;background:#F1EFE8;border-radius:4px;height:22px;position:relative;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;transition:width .4s ease;}
+.bar-val{font-size:11px;font-weight:900;color:#fff;white-space:nowrap;}
+.bar-val.outside{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(-50%);color:#24324A;font-size:11px;font-weight:900;}
+.badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:6px;}
+.badge-mlb{background:rgba(182,132,45,.18);color:#7A5200;}
+.badge-aaa{background:rgba(83,74,183,.14);color:#3C3489;}
+.badge-aa{background:rgba(30,158,117,.14);color:#0F6E56;}
+.badge-ha{background:rgba(216,90,48,.14);color:#993C1D;}
+.badge-a{background:rgba(212,83,126,.14);color:#993556;}
+.footer-note{font-size:11px;color:#6F7682;margin-top:12px;line-height:1.5;border-top:1px solid #E7E2D8;padding-top:10px;}
+
+@media (max-width: 640px) {
+  .bar-label{min-width:140px;font-size:11px;}
+  .tab{padding:8px 12px;font-size:12px;}
+  .head h3{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">Bar chart showing the most dog-friendly baseball stadiums in America ranked by number of official dog-friendly games in 2026.</h2>
+
+<div class="wrap">
+  <div class="head">
+    <h3>Most dog-friendly baseball stadiums in America — 2026</h3>
+    <p>Vegas Insider ranked stadiums by officially listed dog-friendly game dates on MLB and MiLB promotions pages.</p>
+    <p class="note">Top 20 shown. All data from official MLB.com and MiLB.com pages, April 2026.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('all', this)">All stadiums</button>
+    <button class="tab" onclick="setTab('mlb', this)">MLB only</button>
+    <button class="tab" onclick="setTab('milb', this)">MiLB only</button>
+  </div>
+
+  <div class="body">
+    <div class="legend">
+      <span class="leg-item"><span class="leg-dot" style="background:#24324A;"></span>MLB</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#534AB7;"></span>Triple-A</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#1D9E75;"></span>Double-A</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#D85A30;"></span>High-A</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#D4537E;"></span>Single-A</span>
+    </div>
+    <div class="chart-area" id="chart"></div>
+    <p class="footer-note">Dog-friendly games = officially listed Bark at the Park / Bark in the Park / Dog Day event dates. Zero-count stadiums excluded. Source: mlb.com &amp; milb.com, April 2026 — Vegas Insider analysis.</p>
+  </div>
+</div>
+
+<script>
+const ALL = [
+  {name:"PNC Field",          team:"Scranton/WB RailRiders",   games:43, league:"MiLB", level:"Triple-A"},
+  {name:"Dozer Park",          team:"Peoria Chiefs",             games:30, league:"MiLB", level:"High-A"},
+  {name:"Dickey-Stephens Park",team:"Arkansas Travelers",       games:12, league:"MiLB", level:"Double-A"},
+  {name:"Las Vegas Ballpark",  team:"Las Vegas Aviators",        games:12, league:"MiLB", level:"Triple-A"},
+  {name:"Carilion Clinic Field",team:"Salem RidgeYaks",         games:12, league:"MiLB", level:"Single-A"},
+  {name:"Truist Field",        team:"Charlotte Knights",         games:11, league:"MiLB", level:"Triple-A"},
+  {name:"Hammond Stadium",     team:"Fort Myers Mighty Mussels", games:11, league:"MiLB", level:"Single-A"},
+  {name:"FNB Field",           team:"Harrisburg Senators",       games:11, league:"MiLB", level:"Double-A"},
+  {name:"PNC Park",            team:"Pittsburgh Pirates",        games:11, league:"MLB",  level:"MLB"},
+  {name:"Dabos Park",          team:"Montgomery Biscuits",       games:11, league:"MiLB", level:"Double-A"},
+  {name:"Greater Nevada Field",team:"Reno Aces",                 games:11, league:"MiLB", level:"Triple-A"},
+  {name:"Petco Park",          team:"San Diego Padres",          games:6,  league:"MLB",  level:"MLB"},
+  {name:"Nationals Park",      team:"Washington Nationals",      games:5,  league:"MLB",  level:"MLB"},
+  {name:"Great American Ball Park",team:"Cincinnati Reds",       games:4,  league:"MLB",  level:"MLB"},
+  {name:"Progressive Field",   team:"Cleveland Guardians",       games:4,  league:"MLB",  level:"MLB"},
+  {name:"Comerica Park",       team:"Detroit Tigers",            games:4,  league:"MLB",  level:"MLB"},
+  {name:"T-Mobile Park",       team:"Seattle Mariners",          games:4,  league:"MLB",  level:"MLB"},
+  {name:"Oriole Park",         team:"Baltimore Orioles",         games:3,  league:"MLB",  level:"MLB"},
+  {name:"Citi Field",          team:"New York Mets",             games:3,  league:"MLB",  level:"MLB"},
+  {name:"Chase Field",         team:"Arizona Diamondbacks",      games:2,  league:"MLB",  level:"MLB"},
+];
+
+const COLORS = {
+  "MLB":      "#24324A",
+  "Triple-A": "#534AB7",
+  "Double-A": "#1D9E75",
+  "High-A":   "#D85A30",
+  "Single-A": "#D4537E"
+};
+
+const BADGE = {
+  "MLB":      "badge-mlb",
+  "Triple-A": "badge-aaa",
+  "Double-A": "badge-aa",
+  "High-A":   "badge-ha",
+  "Single-A": "badge-a"
+};
+
+function setTab(t, el) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render(t);
+}
+
+function render(tab) {
+  let data = ALL;
+  if (tab === 'mlb')  data = ALL.filter(d => d.league === 'MLB');
+  if (tab === 'milb') data = ALL.filter(d => d.league === 'MiLB');
+  data = data.slice(0, 20);
+
+  const max = data[0] ? data[0].games : 1;
+  const chart = document.getElementById('chart');
+
+  chart.innerHTML = data.map(d => {
+    const pct  = Math.round((d.games / max) * 100);
+    const color = COLORS[d.level] || '#24324A';
+    const wide  = pct > 18;
+    return `
+      <div class="bar-row">
+        <div class="bar-label" title="${d.name} — ${d.team}">
+          ${d.name}
+          <span class="badge ${BADGE[d.level]}">${d.level}</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:${color};">
+            ${wide ? `<span class="bar-val">${d.games} games</span>` : ''}
+          </div>
+          ${!wide ? `<span class="bar-val outside">${d.games} games</span>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+render('all');
+</script>
+
+</body>
+</html>
